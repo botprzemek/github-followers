@@ -10,18 +10,17 @@ import (
 )
 
 func Default(*cli.Context) error {
-	err := cache.Load()
-	if err != nil {
+	if err := cache.Load(); err != nil {
 		return err
 	}
 
-	if err = cache.Save(); err != nil {
+	if err := cache.Save(); err != nil {
 		return err
 	}
 
 	api.GetUsers()
 
-	return err
+	return nil
 }
 
 func main() {
@@ -38,6 +37,3 @@ func main() {
 		log.Fatal(err)
 	}
 }
-
-// https://api.github.com/user/followers
-// https://api.github.com/user/following/cherrymui
